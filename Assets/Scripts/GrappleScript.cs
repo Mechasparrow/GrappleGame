@@ -65,6 +65,7 @@ public class GrappleScript : MonoBehaviour
         retractGrapple = false;
         currentGrappleTarget = null;
         newTargetDistance = null;
+        clawTransform.localScale = Vector3.one;
     }
 
     private void updateGrappleTarget()
@@ -78,6 +79,13 @@ public class GrappleScript : MonoBehaviour
         rope.SetPosition(1, clawTransform.position);
     }
 
+    public void anchorClaw(Transform targetTransform, Vector3 offsetVector)
+    {
+        clawTransform.position = targetTransform.position + offsetVector;
+        clawTransform.localScale = 0.5f * Vector3.one;
+        updateRope();
+    }
+
     Vector3 grabLaunchAngle(Transform targetTransform)
     {
         return (targetTransform.position - baseTransform.position).normalized; 
@@ -85,10 +93,6 @@ public class GrappleScript : MonoBehaviour
 
     void grappleBehavior(Transform grappleTargetTransform)
     {
-
-
-        
-
 
         bool startLaunch = Input.GetKeyUp(KeyCode.Mouse0);
         bool retractGrappleBtn = Input.GetKeyUp(KeyCode.Mouse1);

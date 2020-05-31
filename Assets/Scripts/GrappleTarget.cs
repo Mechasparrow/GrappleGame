@@ -38,8 +38,17 @@ public class GrappleTarget : MonoBehaviour, ITriggerable, IInteractable
         Rigidbody teleportRB = teleportVictim.GetComponent<Rigidbody>();
         teleportRB.velocity = Vector3.zero;
 
-        //Change Position
-        teleportVictim.transform.position = cubePosTeleport.position;
+        GrapplePlayerBehavior gpb = teleportVictim.GetComponent<GrapplePlayerBehavior>();
+        if (gpb)
+        {
+            gpb.grappleTo(cubePosTeleport);
+        }
+        else
+        {
+            //Change Position (teleport)
+            teleportVictim.transform.position = cubePosTeleport.position;
+        }
+
     }
 
 
