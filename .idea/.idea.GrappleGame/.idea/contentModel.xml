@@ -11,7 +11,6 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="PendulumScripts" t="Include">
-          <e p="GrapplePlayerBehavior.cs" t="Include" />
           <e p="GrapplerRodManager.cs" t="Include" />
           <e p="RodLengthGen.cs" t="Include" />
           <e p="SwingBehavior.cs" t="Include" />
@@ -250,10 +249,12 @@
             </e>
           </e>
         </e>
+        <e p="ProjectileController.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Direction.cs" t="Include" />
           <e p="GameTimer.cs" t="Include" />
           <e p="GoalBehavior.cs" t="Include" />
+          <e p="GrapplePlayerBehavior.cs" t="Include" />
           <e p="GrappleScript.cs" t="Include" />
           <e p="GrappleTarget.cs" t="Include" />
           <e p="GrapplerUI.cs" t="Include" />

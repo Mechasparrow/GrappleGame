@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwingBehavior : MonoBehaviour
 {
 
+    public GameObject payload;
     public GameObject rod;
 
     //inputs
@@ -16,6 +17,35 @@ public class SwingBehavior : MonoBehaviour
         
     }
 
+    public GameObject scoutOutClosestAnchorPoint()
+    {
+        GameObject[] anchorPoints = grabAnchorPoints();
+
+        float? minDistance = null;
+
+        GameObject selectedAnchorPoint = null;
+        
+        foreach (GameObject anchorPoint in anchorPoints)
+        {
+            float distance = Vector3.Distance(payload.transform.position, anchorPoint.transform.position);
+
+            if (minDistance == null || distance <= minDistance)
+            {
+                selectedAnchorPoint = anchorPoint;
+                minDistance = distance;
+            }
+
+        }
+
+        return selectedAnchorPoint;
+    }
+    
+    private GameObject[] grabAnchorPoints()
+    {
+        string anchorTag = "anchorPoint";
+        return GameObject.FindGameObjectsWithTag(anchorTag);
+    }
+    
     void processInputs()
     {
         disableRod = Input.GetKeyUp(KeyCode.Space);
@@ -23,9 +53,30 @@ public class SwingBehavior : MonoBehaviour
 
     private void gameLogic()
     {
-        if (disableRod)
+        GrapplerRodManager grm = rod.GetComponent<GrapplerRodManager>();
+        
+        if (disableRod && rod.activeInHierarchy)
         {
+            grm.DestroyAnchor();
             rod.SetActive(false);
+        }
+        else if (disableRod && !rod.activeInHierarchy)
+        {
+            rod.SetActive(true);
+         
+            if (grm)
+            {
+                GameObject closestAnchorPoint = scoutOutClosestAnchorPoint();
+                Debug.Log("grm");
+                
+                if (closestAnchorPoint)
+                {
+                    Debug.Log("Closest anchor");
+                    
+                    grm.AnchorUp(payload.GetComponent<Rigidbody>(), closestAnchorPoint.GetComponent<Rigidbody>());
+                    
+                }
+            }
         }
     }
     
