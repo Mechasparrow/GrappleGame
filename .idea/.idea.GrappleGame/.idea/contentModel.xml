@@ -12,9 +12,11 @@
       <e p="Assets" t="Include">
         <e p="PendulumScripts" t="Include">
           <e p="GrapplerRodManager.cs" t="Include" />
+          <e p="ProjectileController.cs" t="Include" />
           <e p="RodLengthGen.cs" t="Include" />
           <e p="SwingBehavior.cs" t="Include" />
         </e>
+        <e p="PlayerSwing.cs" t="Include" />
         <e p="ProceduralToolkit" t="Include">
           <e p="Examples" t="Include">
             <e p="Breakout" t="Include">
@@ -249,7 +251,6 @@
             </e>
           </e>
         </e>
-        <e p="ProjectileController.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Direction.cs" t="Include" />
           <e p="GameTimer.cs" t="Include" />
@@ -461,6 +462,7 @@
             <e p="WaypointProgressTracker.cs" t="Include" />
           </e>
         </e>
+        <e p="TemporaryCameraFollower.cs" t="Include" />
       </e>
       <e p="GrappleGame.sln" t="IncludeFlat" />
       <e p="ProceduralToolkit.ClipperLib.csproj" t="IncludeRecursive" />

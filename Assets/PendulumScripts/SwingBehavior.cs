@@ -13,17 +13,24 @@ public class SwingBehavior : MonoBehaviour
     //inputs
     private bool disableRod = false;
     
+    //config
+    public bool defaultAnchor;
+    public bool controllable;
+
     // Start is called before the first frame update
     void Start()
     {
         //Grab the grappler rod manager
         grm = rod.GetComponent<GrapplerRodManager>();
-
-        //Grab the closest anchor
-        GameObject closestAnchor = scoutOutClosestAnchorPoint();
+        rod.SetActive(false);
         
-        grm.AnchorUp(payload.GetComponent<Rigidbody>(), closestAnchor.GetComponent<Rigidbody>());
-
+        if (defaultAnchor){
+            rod.SetActive(true);
+            //Grab the closest anchor
+            GameObject closestAnchor = scoutOutClosestAnchorPoint();
+        
+            grm.AnchorUp(payload.GetComponent<Rigidbody>(), closestAnchor.GetComponent<Rigidbody>());
+        }
     }
 
     public GameObject scoutOutClosestAnchorPoint()
@@ -60,16 +67,29 @@ public class SwingBehavior : MonoBehaviour
         disableRod = Input.GetKeyUp(KeyCode.Space);
     }
 
-    private void gameLogic()
+    public void FlipRodManual()
     {
-        GrapplerRodManager grm = rod.GetComponent<GrapplerRodManager>();
-        
-        if (disableRod && rod.activeInHierarchy)
+        disableRod = true;
+    }
+    
+    void ResetRodFlag()
+    {
+        disableRod = false;
+    }
+
+    public bool isGrappled()
+    {
+        return rod.activeInHierarchy;
+    }
+    
+    private void GameLogic(bool _disableRod)
+    {
+        if (_disableRod && rod.activeInHierarchy)
         {
             grm.DestroyAnchor();
             rod.SetActive(false);
         }
-        else if (disableRod && !rod.activeInHierarchy)
+        else if (_disableRod && !rod.activeInHierarchy)
         {
             rod.SetActive(true);
          
@@ -89,18 +109,17 @@ public class SwingBehavior : MonoBehaviour
         }
     }
     
-    void resetInputs()
-    {
-        disableRod = false;
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
-        processInputs();
-
-        gameLogic();
+        if (controllable)
+        {
+            processInputs();
+        }
+        GameLogic(disableRod);
         
-        resetInputs();
+        ResetRodFlag();
     }
 }
