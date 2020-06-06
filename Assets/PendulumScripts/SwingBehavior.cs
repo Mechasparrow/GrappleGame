@@ -8,13 +8,22 @@ public class SwingBehavior : MonoBehaviour
     public GameObject payload;
     public GameObject rod;
 
+    private GrapplerRodManager grm;
+    
     //inputs
     private bool disableRod = false;
     
     // Start is called before the first frame update
     void Start()
     {
+        //Grab the grappler rod manager
+        grm = rod.GetComponent<GrapplerRodManager>();
+
+        //Grab the closest anchor
+        GameObject closestAnchor = scoutOutClosestAnchorPoint();
         
+        grm.AnchorUp(payload.GetComponent<Rigidbody>(), closestAnchor.GetComponent<Rigidbody>());
+
     }
 
     public GameObject scoutOutClosestAnchorPoint()

@@ -13,21 +13,20 @@ public class GrapplerRodManager : MonoBehaviour
     private HingeJoint anchorJoint;
     private FixedJoint fixedJoint;
 
-    //Payload
-    public Rigidbody payload;
-    public Rigidbody anchor;
-    
     // Start is called before the first frame update
     void Start()
+    {
+        InitFields();     
+    }
+
+    void InitFields()
     {
         rlg = GetComponent<RodLengthGen>();
         rb = GetComponent<Rigidbody>();
         fixedJoint = GetComponent<FixedJoint>();
         anchorJoint = null;
-        
-        AnchorUp(payload, anchor);
     }
-
+    
     public void AttachAnchor(Rigidbody anchorPoint)
     {
         GameObject g = new GameObject();
@@ -43,8 +42,6 @@ public class GrapplerRodManager : MonoBehaviour
         
     }
 
-    
-    
     public void DestroyAnchor()
     {
         if (anchorJoint)
@@ -61,12 +58,17 @@ public class GrapplerRodManager : MonoBehaviour
     
     public void AnchorUp(Rigidbody payloadBody, Rigidbody anchorPoint)
     {
-       //Set new fields
-        payload = payloadBody;
-
-        AttachAnchor(anchorPoint);
+        if (fixedJoint == null)
+        {
+            InitFields();
+        }
         
         fixedJoint.connectedBody = null;
+
+        
+        //Set new fields
+        AttachAnchor(anchorPoint);
+
         
         rb.isKinematic = true;
         
@@ -74,7 +76,7 @@ public class GrapplerRodManager : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         
         //Apply the scaling
-        Vector3 axisVector = rlg.ApplyScaling(payloadBody.gameObject.transform, anchor.gameObject.transform,null);
+        Vector3 axisVector = rlg.ApplyScaling(payloadBody.gameObject.transform, anchorPoint.gameObject.transform,null);
 
      
         //Fix the rod to the payload
