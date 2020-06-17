@@ -26,13 +26,13 @@ public class GrappleTarget : MonoBehaviour, ITriggerable, IInteractable
         }
     }
 
-    public void trigger(GameObject source)
+    public virtual void trigger(GameObject source)
     {
         
         renderer.material = triggerMat;
     }
 
-    public void Interact(GameObject teleportVictim)
+    public virtual void Interact(GameObject teleportVictim)
     {
         //Reset velocity
         Rigidbody teleportRB = teleportVictim.GetComponent<Rigidbody>();
@@ -53,14 +53,14 @@ public class GrappleTarget : MonoBehaviour, ITriggerable, IInteractable
 
 
 
-    public void untrigger(GameObject source)
+    public virtual void untrigger(GameObject source)
     {
         //TODO
         renderer.material = untriggerMat;
     }
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         renderer = GetComponent<Renderer>();        
     }

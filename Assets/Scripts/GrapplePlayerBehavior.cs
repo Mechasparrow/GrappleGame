@@ -17,11 +17,16 @@ public class GrapplePlayerBehavior : MonoBehaviour
     private float targetDistance = 0.0f;
     private float distanceTraveled = 0.0f;
 
-
+    //Grabbing variables
+    public Transform grabTransform;
+    public GrabbableObject grabbedObject;
+    
     //physics variable
     private Rigidbody rb;
     private GrappleScript gs;
 
+    
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,6 +57,8 @@ public class GrapplePlayerBehavior : MonoBehaviour
         rb.isKinematic = true;
     }
 
+    
+    
     void grapplingBehavior()
     {
         if (startGrapple == true)
@@ -78,6 +85,13 @@ public class GrapplePlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool ungrab = Input.GetKeyUp(KeyCode.Mouse1);
+
+        if (ungrab && grabbedObject)
+        {
+            grabbedObject.UngrabTheObject(this);
+        }
+        
         grapplingBehavior();
     }
 }

@@ -183,7 +183,6 @@ public class GrappleScript : MonoBehaviour
         
         if (currentGrappleTarget != null)
         {
-            Debug.Log("New Target!");
             grappleTargetTransform = currentGrappleTarget.transform;
             grappleUI.enableGrapplerUI();
         }else

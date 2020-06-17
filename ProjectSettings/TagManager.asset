@@ -6,6 +6,7 @@ TagManager:
   tags:
   - claw
   - anchorPoint
+  - grabRegion
   layers:
   - Default
   - TransparentFX
