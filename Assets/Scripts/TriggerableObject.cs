@@ -9,20 +9,9 @@ public class TriggerableObject : MonoBehaviour, ITriggerable
         throw new System.NotImplementedException();
     }
 
-    public void untrigger(GameObject source)
+    virtual public void untrigger(GameObject source)
     {
         throw new System.NotImplementedException();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -10,14 +10,12 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="GrabbableObject.cs" t="Include" />
         <e p="PendulumScripts" t="Include">
           <e p="GrapplerRodManager.cs" t="Include" />
           <e p="ProjectileController.cs" t="Include" />
           <e p="RodLengthGen.cs" t="Include" />
           <e p="SwingBehavior.cs" t="Include" />
         </e>
-        <e p="PlayerSwing.cs" t="Include" />
         <e p="ProceduralToolkit" t="Include">
           <e p="Examples" t="Include">
             <e p="Breakout" t="Include">
@@ -256,6 +254,7 @@
           <e p="Direction.cs" t="Include" />
           <e p="GameTimer.cs" t="Include" />
           <e p="GoalBehavior.cs" t="Include" />
+          <e p="GrabbableObject.cs" t="Include" />
           <e p="GrapplePlayerBehavior.cs" t="Include" />
           <e p="GrappleScript.cs" t="Include" />
           <e p="GrappleTarget.cs" t="Include" />
@@ -265,7 +264,10 @@
           <e p="ITriggerable.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="PlayerControls.cs" t="Include" />
+          <e p="PlayerSwing.cs" t="Include" />
+          <e p="PressurePlate.cs" t="Include" />
           <e p="RaycastTarget.cs" t="Include" />
+          <e p="TemporaryCameraFollower.cs" t="Include" />
           <e p="TriggerableObject.cs" t="Include" />
           <e p="UIGoalTrigger.cs" t="Include" />
         </e>
@@ -463,7 +465,6 @@
             <e p="WaypointProgressTracker.cs" t="Include" />
           </e>
         </e>
-        <e p="TemporaryCameraFollower.cs" t="Include" />
       </e>
       <e p="GrappleGame.sln" t="IncludeFlat" />
       <e p="ProceduralToolkit.ClipperLib.csproj" t="IncludeRecursive" />
